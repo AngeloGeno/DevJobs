@@ -1,0 +1,42 @@
+﻿@model Entities.ViewModels.LoginViewModel;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<p>
+    <a>Log in to the best Job Website</a>
+</p>
+<div class="card rounded">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+
+        <form method="post" class="col-md-4 mb-3">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email address</label>
+                <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+           
+            <div class="mb-3 form-check">
+                <input  asp-for="RememberMe" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label asp-for="RememberMe" class="form-check-label" for="exampleCheck1"></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

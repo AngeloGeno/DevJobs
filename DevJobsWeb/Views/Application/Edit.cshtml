@@ -1,0 +1,60 @@
+﻿@model DevJobsWeb.Application
+@using Entities.Enums;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Application</h1>
+
+<h4>You can only edit the  Application status</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ApplicationId" />
+            <div class="form-group">
+                <label asp-for="JobId" class="control-label"> Job ID</label>
+                <input disabled  asp-for="JobId" class="form-control" asp-items="JobId"/>
+                <input hidden asp-for="JobId" class="form-control" asp-items="JobId" />
+                <span asp-validation-for="JobId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicantId" class="control-label">Applicant ID</label>
+                <input disabled asp-for="ApplicantId" class="form-control" />
+                <input hidden asp-for="ApplicantId" class="form-control" />
+                <span asp-validation-for="ApplicantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label">Date Created</label>
+                <input hidden asp-for="DateCreated" class="form-control" />
+                <input disabled asp-for="DateCreated" class="form-control" />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>                                                            
+            <div class="form-group">
+                <label asp-for="ApplicationStatusId" class="control-label">Application Status</label>
+                <input asp-for=" ApplicationStatusId" class="form-control" asp-items="ApplicationStatusId"/>
+@*
+                <select name="ApplicationStatusId" class="form-control">
+                    <option value="@DatabaseEnums.ApplicationStatus.Submitted">Submitted</option>
+                    <option value="2">Processed</option>
+                    <option value="@DatabaseEnums.ApplicationStatus.Rejected">Rejected</option>
+                    <option value="@DatabaseEnums.ApplicationStatus.Succesful">Succesful</option>
+                </select>*@
+
+                <span asp-validation-for="ApplicationStatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

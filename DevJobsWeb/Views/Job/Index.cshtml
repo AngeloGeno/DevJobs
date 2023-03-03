@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DevJobsWeb.Job>
+
+@{
+    ViewData["Title"] = "List of Available Jobs";
+}
+
+<h1>List of Jobs</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<div class="card rounded">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+        <table class="table align-middle mb-0 bg-white" id="jobs">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.JobTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PositionLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Company)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company)
+                        </td>
+                        <td>
+                            @*<a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> &nbsp &nbsp*@
+                            <a asp-action="Details" asp-route-id="@item.JobId" class="btn btn-outline-secondary">Details</a>  &nbsp &nbsp
+                            <a asp-controller="Application" asp-action="Create" asp-route-id="@item.JobId" class="btn btn-outline-success">Apply</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+ </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#jobs').DataTable({
+                "order": [[1, "desc"]],
+                dom: "<'row mb-3'<'col-sm-4'l><'col-sm-8 text-right'<'d-flex justify-content-end'fB>>>t<'d-flex align-items-center'<'mr-auto'i><'mb-0'p>>",
+                lengthMenu: [10, 20, 30, 40, 50],
+                responsive: true,
+            });
+        });
+    </script>
+
+}

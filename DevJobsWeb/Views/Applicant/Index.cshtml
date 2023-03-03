@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Entities.ViewModels.ApplicantViewModel>
+
+@{
+    ViewData["Title"] = "All Applicants";
+}
+
+<h1>Applicants</h1>
+
+<p>
+    <a asp-action="Create">Register a new applicant</a>
+</p>
+<div class="card rounded">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <table class="table align-middle mb-0 bg-white" id="applicants">
+    <thead class = "bg-light">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Female
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Qualification
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Applicant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Applicant.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Applicant.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Applicant.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QualificationLevelName)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Applicant.ApplicantId"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a> &nbsp &nbsp
+                    <a asp-action="Details" asp-route-id="@item.Applicant.ApplicantId" class="btn btn-outline-secondary">Details</a> &nbsp &nbsp
+                    <a asp-action="Delete" asp-route-id="@item.Applicant.ApplicantId" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+   
+</div>
+</div>  
+
+@section Scripts{
+
+
+
+       <script>
+        $(document).ready(function () {
+            $('#applicants').DataTable({
+                "order": [[1, "desc"]],
+                dom: "<'row mb-3'<'col-sm-4'l><'col-sm-8 text-right'<'d-flex justify-content-end'fB>>>t<'d-flex align-items-center'<'mr-auto'i><'mb-0'p>>",
+                lengthMenu: [10, 20, 30, 40, 50],
+                responsive: true,
+            });
+
+        });
+    </script>
+
+}

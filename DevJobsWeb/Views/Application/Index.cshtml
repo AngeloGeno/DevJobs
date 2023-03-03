@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Entities.ViewModels.ApplicationViewModel>
+
+@{
+    ViewData["Title"] = "List Of Applications";
+}
+
+<h1>List of all applications</h1>
+
+<p>
+    <a asp-controller="Job" asp-action="Index">View Jobs</a>
+</p>
+<div class="card rounded">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+        <table class="table align-middle mb-0 bg-white" id="applications">
+            <thead class="bg-light">
+                <tr>
+                    <th>
+                        Application ID
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+                    <th>
+                        Job Title
+                    </th>
+                    <th>
+                        Job Position
+                    </th>
+                    <th>
+                        Application Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Application.ApplicationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lastname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobPosition)
+                        </td>
+                        <td>
+                            <span class="badge rounded-pill success">@Html.DisplayFor(modelItem => item.ApplicationStatus)</span>
+
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Application.ApplicationId"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> &nbsp &nbsp
+                            <a asp-action="Delete" asp-route-id="@item.Application.ApplicationId" class="btn btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+@section Styles
+{
+    <style>
+        .success {
+            background-color: #d6f0e0;
+            color: #0d6832;
+        }
+    </style>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#applications').DataTable({
+                "order": [[1, "desc"]],
+                dom: "<'row mb-3'<'col-sm-4'l><'col-sm-8 text-right'<'d-flex justify-content-end'fB>>>t<'d-flex align-items-center'<'mr-auto'i><'mb-0'p>>",
+                lengthMenu: [10, 20, 30, 40, 50],
+                responsive: true,
+            });
+
+         });
+    </script>
+}
