@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DevJobsWeb;
+namespace Entities.Models;
 
 public partial class Application
 {
@@ -15,7 +15,7 @@ public partial class Application
 
     public int ApplicationStatusId { get; set; }
 
-    public virtual Applicant ApplicationNavigation { get; set; } = null!;
+    public virtual Applicant Applicant { get; set; } = null!;
 
     public virtual ApplicationStatus ApplicationStatus { get; set; } = null!;
 

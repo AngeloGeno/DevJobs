@@ -1,6 +1,7 @@
 ﻿using Contracts;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
+
 using Repository;
 using System.Net;
 

@@ -1,5 +1,6 @@
-﻿using DevJobsWeb;
+﻿
 using Entities;
+using Entities.Models;
 using Entities.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace Contracts
         void CreateApplication(Application application);
         void UpdateApplication(Application application);
         void DeleteApplication(Application application);
-
-
+       // void CreateApplication(Application application);
     }
 }

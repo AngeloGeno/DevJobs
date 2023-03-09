@@ -1,5 +1,6 @@
 using Contracts;
 using DevJobsAPI;
+using DevJobsAPI.Extentions;
 using DevJobsWeb;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
@@ -14,12 +15,12 @@ namespace DevJobsWeb
             CreateHostBuilder(args).Build().Run();
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-           Host.CreateDefaultBuilder(args)                
+           Host.CreateDefaultBuilder(args)
            .ConfigureWebHostDefaults(webBuilder =>
            {
                webBuilder.UseStartup<Startup>();
            });
-           
+
 
     }
 
@@ -33,12 +34,12 @@ namespace DevJobsWeb
 //builder.Services.ConfigureMySqlContext(builder.Configuration);
 
 
-//// Add services to the container.
+// Add services to the container.
 //builder.Services.AddControllersWithViews();
 //builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 //var app = builder.Build();
-                                                                    
+
 //// Configure the HTTP request pipeline.
 //if (!app.Environment.IsDevelopment())
 //{

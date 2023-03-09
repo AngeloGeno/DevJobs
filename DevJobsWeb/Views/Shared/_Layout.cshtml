@@ -1,5 +1,5 @@
-﻿@inject SignInManager<IdentityUser> signInManager;
-
+﻿@*@inject SignInManager<IdentityUser> signInManager;
+*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
                         
                     </ul>
                    
-                    <ul class="navbar-nav m-lg-auto">
+                    @*<ul class="navbar-nav m-lg-auto">
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
@@ -61,8 +61,10 @@
                         }
 
                        
-                    </ul>
+                    </ul>*@
+
                 </div>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>

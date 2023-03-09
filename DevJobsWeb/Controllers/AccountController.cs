@@ -122,10 +122,6 @@ namespace DevJobsWeb.Controllers
                 return Json($"Email{email}is already in use.");
             }
 
-          
-
-
-            
         }
     }
 }

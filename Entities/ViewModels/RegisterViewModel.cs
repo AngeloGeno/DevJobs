@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
+using RemoteAttribute = Microsoft.AspNetCore.Mvc.RemoteAttribute;
 
 namespace Entities.ViewModels
 {

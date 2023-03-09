@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DevJobsWeb;
+namespace Entities.Models;
 
 public partial class Applicant
 {
@@ -13,11 +13,13 @@ public partial class Applicant
 
     public string Gender { get; set; } = null!;
 
+    public string? Email { get; set; }
+
     public string? Address { get; set; }
 
     public int? QualificationLevelId { get; set; }
 
-    public virtual Application? Application { get; set; }
-                                                   
+    public virtual ICollection<Application> Applications { get; } = new List<Application>();
+
     public virtual QualificationLevel? QualificationLevel { get; set; }
 }

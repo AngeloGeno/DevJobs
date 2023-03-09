@@ -1,9 +1,12 @@
 ﻿using Contracts;
 using Microsoft.AspNetCore.Http;
+using Entities.Models;
+using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
+
 using Entities.Enums;
 using System.ComponentModel;
+
 
 namespace DevJobsWeb.Controllers
 {
@@ -62,7 +65,7 @@ namespace DevJobsWeb.Controllers
              
             try
             {
-                Random random = new Random();
+                Random random = new();
                
                 int newID = random.Next(4, 51);
 

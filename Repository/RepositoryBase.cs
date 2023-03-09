@@ -1,6 +1,7 @@
 ﻿using Contracts;
-using DevJobsWeb;
+
 using Entities;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
+        private JobsOnLineContext repositoryContext;
+
         protected JobsOnLineContext RepositoryContext { get; set; }
         public RepositoryBase(JobsOnLineContext repositoryContext)
         {

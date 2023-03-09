@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DevJobsAPI;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Entities.Models;
+using Repository;
 
 namespace DevJobsWeb.Controllers
 {

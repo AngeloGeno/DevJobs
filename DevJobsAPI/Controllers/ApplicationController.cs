@@ -1,6 +1,6 @@
 ﻿
 using Contracts;
-using DevJobsWeb;
+using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

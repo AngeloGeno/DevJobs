@@ -1,12 +1,12 @@
 ﻿
 using Contracts;
 using Microsoft.AspNetCore.Mvc;
-using DevJobsWeb;
+
 using System.Linq.Expressions;
 using static Entities.Enums.DatabaseEnums;
 using System.Net;
 using System.Reflection;
-
+using Entities.Models;
 
 namespace DevJobsAPI.Controllers
 {

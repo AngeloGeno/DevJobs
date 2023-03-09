@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevJobsWeb;
+namespace Entities.Models;
 
-public partial class JobsOnLineContext : IdentityDbContext
+public partial class JobsOnLineContext : DbContext
 {
     public JobsOnLineContext()
     {
@@ -32,16 +31,13 @@ public partial class JobsOnLineContext : IdentityDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Applicant>(entity =>
         {
             entity.ToTable("Applicant");
 
-            entity.Property(e => e.ApplicantId)
-                .ValueGeneratedNever()
-                .HasColumnName("ApplicantID");
+            entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
             entity.Property(e => e.Address).HasMaxLength(50);
+            entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.Gender)
                 .HasMaxLength(10)
                 .IsFixedLength();
@@ -58,16 +54,14 @@ public partial class JobsOnLineContext : IdentityDbContext
         {
             entity.ToTable("Application");
 
-            entity.Property(e => e.ApplicationId)
-                .ValueGeneratedNever()
-                .HasColumnName("ApplicationID");
+            entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
             entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
             entity.Property(e => e.ApplicationStatusId).HasColumnName("ApplicationStatusID");
             entity.Property(e => e.DateCreated).HasColumnType("datetime");
             entity.Property(e => e.JobId).HasColumnName("JobID");
 
-            entity.HasOne(d => d.ApplicationNavigation).WithOne(p => p.Application)
-                .HasForeignKey<Application>(d => d.ApplicationId)
+            entity.HasOne(d => d.Applicant).WithMany(p => p.Applications)
+                .HasForeignKey(d => d.ApplicantId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Application_Applicant");
 
@@ -88,9 +82,7 @@ public partial class JobsOnLineContext : IdentityDbContext
 
             entity.ToTable("ApplicationStatus");
 
-            entity.Property(e => e.ApplicationSatusId)
-                .ValueGeneratedNever()
-                .HasColumnName("ApplicationSatusID");
+            entity.Property(e => e.ApplicationSatusId).HasColumnName("ApplicationSatusID");
             entity.Property(e => e.ApplicationStatusType).HasMaxLength(50);
         });
 
@@ -98,9 +90,7 @@ public partial class JobsOnLineContext : IdentityDbContext
         {
             entity.ToTable("Job");
 
-            entity.Property(e => e.JobId)
-                .ValueGeneratedNever()
-                .HasColumnName("JobID");
+            entity.Property(e => e.JobId).HasColumnName("JobID");
             entity.Property(e => e.Company).HasMaxLength(50);
             entity.Property(e => e.JobTitle).HasMaxLength(50);
             entity.Property(e => e.PositionLevel).HasMaxLength(50);
@@ -110,9 +100,7 @@ public partial class JobsOnLineContext : IdentityDbContext
         {
             entity.ToTable("QualificationLevel");
 
-            entity.Property(e => e.QualificationLevelId)
-                .ValueGeneratedNever()
-                .HasColumnName("QualificationLevelID");
+            entity.Property(e => e.QualificationLevelId).HasColumnName("QualificationLevelID");
             entity.Property(e => e.QualificationLevelName).HasMaxLength(50);
         });
 

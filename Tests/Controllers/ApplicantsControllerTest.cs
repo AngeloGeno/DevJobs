@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks; 
-
-using Entities;
-using Repository;
+﻿
 using Contracts;
-using DevJobsAPI;
-using DevJobsWeb;
+
+using Entities.Models;
 using Moq;
 using DevJobsWeb.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Net.Sockets;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
+using NPOI.SS.Formula.Functions;
 
 namespace Tests.Controllers
 {

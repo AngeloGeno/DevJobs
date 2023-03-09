@@ -1,6 +1,6 @@
 ﻿using Contracts;
 
-using DevJobsWeb;
+using Entities.Models;
 using Entities.ViewModels;
 //using Entities.Models;
 using System;

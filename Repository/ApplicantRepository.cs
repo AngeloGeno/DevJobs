@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts;
 
-using DevJobsWeb;
+using Repository;
 using Entities.ViewModels;
 using Microsoft.EntityFrameworkCore;
-
+using Entities.Models;
 
 namespace Repository
 {
@@ -76,8 +76,8 @@ namespace Repository
                       where a.ApplicantId.Equals(app.ApplicantId)
                       select a)?.DefaultIfEmpty();
 
-            int deletedRecordsCount = del.ExecuteDelete();
-            Delete(app);
+            //int deletedRecordsCount = del.ExecuteDelete();
+            //Delete(app);
 
         }
     }
