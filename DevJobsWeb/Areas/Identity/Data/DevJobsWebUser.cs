@@ -9,5 +9,8 @@ namespace DevJobsWeb.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the DevJobsWebUser class
 public class DevJobsWebUser : IdentityUser
 {
+    public string PreferredName { get; set; }
+
+    public string PhoneNumber { get; set; }
 }
 

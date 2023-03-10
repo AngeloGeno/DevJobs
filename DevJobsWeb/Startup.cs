@@ -4,6 +4,7 @@ using Contracts;
 using Microsoft.AspNetCore.Builder;
 using Repository;
 using Entities.Models;
+using Entities.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using DevJobsWeb;
@@ -47,32 +48,19 @@ namespace DevJobsWeb
             // });
             // services.AddRazorPages();
 
-            var connectionString = Configuration["mysqlconnection:connectionString"];
-            services.AddDbContext<JobsOnLineContext>(o => o.UseSqlServer(connectionString));
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequiredUniqueChars = 1;
+            services.AddDbContext<JobsOnLineContext>(options =>
+                 options.UseSqlServer(
+                     Configuration.GetConnectionString("mysqlconnection")),
+                     ServiceLifetime.Transient
+                 );
 
-                // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 3;
-                options.Lockout.AllowedForNewUsers = true;
-                options.User.RequireUniqueEmail = true;
-                options.SignIn.RequireConfirmedEmail = true;
 
-                // User settings.
-                options.User.AllowedUserNameCharacters =
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = true;
+            services.AddDbContext<AspDevJobsWebContext>(options =>
+              options.UseSqlServer(
+                  Configuration.GetConnectionString("AspDevJobsWebContextConnection")));
 
-            });
+           
 
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
@@ -106,6 +94,11 @@ namespace DevJobsWeb
             });
 
             services.AddRazorPages();
+
+
+            services.AddDefaultIdentity<DevJobsWebUser>()
+                   .AddEntityFrameworkStores<AspDevJobsWebContext>().AddDefaultTokenProviders().AddDefaultUI();
+
 
         }
 

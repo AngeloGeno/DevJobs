@@ -14,13 +14,10 @@ namespace DevJobsWeb.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<AspDevJobsWebContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AspDevJobsWebContextConnection")));
 
-                services.AddDefaultIdentity<DevJobsWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<AspDevJobsWebContext>();
+
+            builder.ConfigureServices((context, services) => {
+               
             });
         }
     }

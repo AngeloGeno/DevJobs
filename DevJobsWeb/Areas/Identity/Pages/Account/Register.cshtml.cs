@@ -54,6 +54,8 @@ namespace DevJobsWeb.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -72,6 +74,16 @@ namespace DevJobsWeb.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+            [Required]
+            [StringLength(60, ErrorMessage = "The prefered name should have a maximum of 60 characters")]
+            [Display(Name = "Preferred Name")]
+            public string PreferredName { get; set; }
+
+            [Required]
+            [StringLength(10, ErrorMessage = "The prefered name should have a maximum of 10 characters")]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -115,6 +127,9 @@ namespace DevJobsWeb.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.PreferredName = Input.PreferredName;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
