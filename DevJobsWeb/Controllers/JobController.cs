@@ -88,14 +88,64 @@ namespace DevJobsWeb.Controllers
 
         }
 
-        [HttpDelete]
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Job job)
+        {
+
+            if(job != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _repository.Job.CreateJob(new Job()
+                        {
+                            JobTitle = job.JobTitle,
+                            PositionLevel = job.PositionLevel,
+                            Company = job.Company,
+
+                        }
+                        );
+                        _repository.Save();
+
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+
+               
+            }
+            return View();
+
+        }
+
+        [HttpGet]
         public IActionResult Delete(int id)
+        {
+            var job = _repository.Job.GetJobById(id);
+
+            return View();
+        }
+
+
+        [HttpDelete]
+        public IActionResult Delete(int id, Job job)
         {
             try
             {
-                var job = _repository.Job.GetJobById(id);
+                var jobs = _repository.Job.GetJobById(id);
 
-                if (job == null)
+                if (jobs == null)
                     throw new Exception("Invalid ID");
 
                 _repository.Job.Delete(job);

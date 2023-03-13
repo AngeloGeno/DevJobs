@@ -62,7 +62,7 @@ namespace DevJobsWeb.Controllers
 
                 _repository.Applicant.CreateApplicant(new Applicant()
                 {
-                    ApplicantId = applicant.ApplicantId,
+                  
                     Name = applicant.Name,
                     LastName = applicant.LastName,
                     Address = applicant.Address,
@@ -75,7 +75,7 @@ namespace DevJobsWeb.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

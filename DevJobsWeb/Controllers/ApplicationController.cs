@@ -58,25 +58,12 @@ namespace DevJobsWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Application application)
         {
-            var appID = _repository.Applicant.GetApplicantById(application.ApplicantId);
-
-            
-            var num2 = application.ApplicantId;
-             
+           
             try
             {
-                Random random = new();
-               
-                int newID = random.Next(4, 51);
-
-                var app = _repository.Application.GetApplicationById(newID);
-
-                
-                    if (app == null)
-                    {
                         _repository.Application.CreateApplication(new Application()
                         {
-                            ApplicationId = newID,
+                           
                             ApplicantId = application.ApplicantId,
                             JobId = application.JobId,                  // picking from available jobs
                             DateCreated = application.DateCreated,
@@ -87,10 +74,7 @@ namespace DevJobsWeb.Controllers
                         _repository.Save();
 
                         return RedirectToAction(nameof(Index));
-                    }
-
-                 return View();
-
+                    
             }
             catch(Exception ex)
             {

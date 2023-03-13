@@ -1,0 +1,50 @@
+﻿@model Entities.Models.Job
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create a Job</h1>
+
+<h4>Register as an applicant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form  asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="JobTitle" class="control-label"></label>
+                <input asp-for="JobTitle" class="form-control" />
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="PositionLevel" class="control-label"></label>
+                <input asp-for="PositionLevel" class="form-control" />
+                <span asp-validation-for="PositionLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+           
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group mt-3">
+                <input type="button" asp-controller="Job" asp-action="Index" value="Back to List" class="btn btn-secondary" />
+            </div>                          
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <input type="button" class="btn btnalert-secondary" asp-action="Index">Back to List/>
+</div>*@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

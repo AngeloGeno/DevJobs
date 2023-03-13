@@ -13,11 +13,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mt-3">
-                <label asp-for="ApplicantId" class="control-label"></label>
-                <input asp-for="ApplicantId" class="form-control" />
-                <span asp-validation-for="ApplicantId" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-3">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -40,6 +35,19 @@
             <div class="form-group mt-3">
                 <label asp-for="QualificationLevelId" class="control-label"></label>
                 <input asp-for="QualificationLevelId" class ="form-control" >
+            </div>
+            <!-- Example single danger button -->
+            <div class="btn-group">
+                <button asp-for="QualificationLevelId" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Qualification Level
+                </button>
+                <ul class="dropdown-menu" asp-for="QualificationLevelId">
+                    <li><a class="dropdown-item" asp-for="QualificationLevelId" value="1" href="#">Higher Certificate</a></li>
+                    <li><a class="dropdown-item" value="2" href="#">Diploma</a></li>
+                    <li><a class="dropdown-item" href="#">Degree</a></li>
+                    <li><hr class="dropdown-divider">Honours</li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
             </div>
 
             <div class="form-group mt-3">
