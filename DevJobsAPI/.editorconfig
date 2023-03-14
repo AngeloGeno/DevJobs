@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS1900: Warning level must be in the range 0-4
+dotnet_diagnostic.CS1900.severity = none

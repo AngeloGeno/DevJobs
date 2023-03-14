@@ -60,9 +60,16 @@ namespace DevJobsWeb
               options.UseSqlServer(
                   Configuration.GetConnectionString("AspDevJobsWebContextConnection")));
 
-           
+            services.AddIdentity<DevJobsWebUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
+            })
+              .AddEntityFrameworkStores<AspDevJobsWebContext>()
+              .AddDefaultTokenProviders();
 
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
+
 
             services.AddControllersWithViews();
 
@@ -94,10 +101,12 @@ namespace DevJobsWeb
             });
 
             services.AddRazorPages();
+  //          services.AddDefaultIdentity<DevJobsWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
+  //.AddRoles<IdentityRole>() //Line that can help you
+  //.AddEntityFrameworkStores<AspDevJobsWebContext>();
 
-
-            services.AddDefaultIdentity<DevJobsWebUser>()
-                   .AddEntityFrameworkStores<AspDevJobsWebContext>().AddDefaultTokenProviders().AddDefaultUI();
+            //services.AddDefaultIdentity<DevJobsWebUser>()
+            //       .AddEntityFrameworkStores<AspDevJobsWebContext>().AddDefaultTokenProviders().AddDefaultUI();
 
 
         }

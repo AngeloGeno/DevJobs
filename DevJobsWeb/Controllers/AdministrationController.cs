@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using DevJobsWeb.Areas.Identity.Data;
 using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -11,18 +12,21 @@ namespace DevJobsWeb.Controllers
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<DevJobsWebUser> userManager;
+        private readonly IRepositoryWrapper _repository;
 
-        public AdministrationController(IRepositoryWrapper repository, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public AdministrationController(IRepositoryWrapper repository, RoleManager<IdentityRole> roleManager, UserManager<DevJobsWebUser> userManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            _repository = repository;
         }
 
         //[Route("Administration/Create/{Id}")]
         public IActionResult Index()
         {
-            return View();
+            var role = this.roleManager.Roles.ToList();
+            return View(role);
         }
 
         [HttpGet]
