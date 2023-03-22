@@ -21,7 +21,6 @@ namespace DevJobsWeb
                webBuilder.UseStartup<Startup>();
            });
 
-
     }
 
 }

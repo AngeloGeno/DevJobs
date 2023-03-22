@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using DevJobsWeb.Areas.Identity.Data;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,11 +10,11 @@ namespace DevJobsWeb.Controllers
     public class AccountController : Controller
     {
         private readonly IRepositoryWrapper _repository;
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<DevJobsWebUser> userManager;
+        private readonly SignInManager<DevJobsWebUser> signInManager;
 
-        public AccountController(IRepositoryWrapper repository, UserManager<IdentityUser> userManager,
-                                SignInManager<IdentityUser> signInManager)
+        public AccountController(IRepositoryWrapper repository, UserManager<DevJobsWebUser> userManager,
+                                SignInManager<DevJobsWebUser> signInManager)
         {
             _repository = repository;
             this.userManager = userManager;
@@ -33,7 +34,7 @@ namespace DevJobsWeb.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new DevJobsWebUser
                 {
                     UserName = model.Email,
                     Email = model.Email,

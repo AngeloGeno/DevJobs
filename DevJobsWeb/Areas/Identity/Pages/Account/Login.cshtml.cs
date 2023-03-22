@@ -88,6 +88,7 @@ namespace DevJobsWeb.Areas.Identity.Pages.Account
         }
 
 
+        
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -105,7 +106,8 @@ namespace DevJobsWeb.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        
+
+ 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");

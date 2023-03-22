@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DevJobsWeb.Areas.Identity.Data.DevJobsWebUser>
+
+@{
+    ViewBag.Title = "All Users";
+}
+ 
+<h1>All User</h1>
+
+@if(Model.Any())
+{
+
+
+}
+else
+{
+    <div class="card">
+      <div class="card-header">
+         No users created yet
+
+      </div>
+      <div class="card-body">
+            <h5 class="card-title">Use the button bellow to create a new user</h5>
+           <a class="btn btn-primary" style="width:auto" asp-controller="Administration"
+           asp-action="Register">Add new user</a>
+      </div>
+      <div class="card-footer">
+          <a href="#" class=" btn-danger">Edit</a>
+          <a href="#" class="btn btn-danger">Delete</a>
+
+      </div>
+
+    </div>
+}

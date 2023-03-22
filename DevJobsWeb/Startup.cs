@@ -30,22 +30,6 @@ namespace DevJobsWeb
         {
 
 
-            // var connectionString = Configuration["mysqlconnection:connectionString"];
-            // services.AddDbContext<JobsOnLineContext>(o => o.UseSqlServer(connectionString));
-
-            ////services.AddIdentity<IdentityUser, IdentityRole>()
-            // //.AddEntityFrameworkStores<JobsOnLineContext>();
-
-            // services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            // services.AddControllersWithViews();
-            // services.AddControllersWithViews(config =>
-            // {
-            //     var policy = new AuthorizationPolicyBuilder()
-            //             .RequireAuthenticatedUser()
-            //             .Build();
-            //     config.Filters.Add(new AuthorizeFilter(policy));
-            //     config.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            // });
             // services.AddRazorPages();
 
 
@@ -101,46 +85,12 @@ namespace DevJobsWeb
             });
 
             services.AddRazorPages();
-  //          services.AddDefaultIdentity<DevJobsWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
-  //.AddRoles<IdentityRole>() //Line that can help you
-  //.AddEntityFrameworkStores<AspDevJobsWebContext>();
-
-            //services.AddDefaultIdentity<DevJobsWebUser>()
-            //       .AddEntityFrameworkStores<AspDevJobsWebContext>().AddDefaultTokenProviders().AddDefaultUI();
-
-
+  
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-          //  app.UseCors(x => x
-          //.AllowAnyOrigin()
-          //.AllowAnyMethod()
-          //.AllowAnyHeader());
-
-          //  app.UseHttpsRedirection();
-          //  app.UseStaticFiles();
-          //  app.UseStatusCodePages();
-
-          //  app.UseRouting();
-          //  app.UseAuthentication();
-           
-          //  app.UseAuthorization();
-
-          //   app.UseEndpoints(endpoints =>
-          //  {
-          //      endpoints.MapControllerRoute(
-          //          name: "default",
-          //          pattern: "{controller=Home}/{action=Index}/{id?}");
-          //      endpoints.MapRazorPages();
-          //  });
-
-
-
-
-
-
-
+    
 
             if (env.IsDevelopment())
             {
@@ -165,6 +115,7 @@ namespace DevJobsWeb
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+
 
 
             app.UseEndpoints(endpoints =>

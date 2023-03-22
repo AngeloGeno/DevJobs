@@ -59,13 +59,15 @@ namespace DevJobsWeb.Controllers
 
         }
 
-        public IActionResult ListRoles()
+        public IActionResult UserList()
         {
-            var roles = roleManager.Roles;
-            return View(roles);
+            var users = userManager.Users;
+          //  var roles = roleManager.Roles;
+            return View(users);
         }
 
-        [Route("Administration/EditRole")]
+        [HttpGet]
+       // [Route("Administration/EditRole")]
         public async Task<IActionResult> EditRole(string id)
         {
             var role = await roleManager.FindByIdAsync(id);            
@@ -102,7 +104,7 @@ namespace DevJobsWeb.Controllers
             {
                 ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
                 return View("NotFound");
-            }
+            }                  
             else
             {
                 role.Name = model.RoleName;
@@ -112,7 +114,7 @@ namespace DevJobsWeb.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("ListRoles");
+                    return RedirectToAction("Index");
                 }
 
                 foreach (var error in result.Errors)
@@ -159,6 +161,7 @@ namespace DevJobsWeb.Controllers
             return View(model);
         }
 
+
         public async Task<IActionResult> EditUsersInRole (List<UserRoleViewModel> model, string roleId)
         {
              var role = await roleManager.FindByIdAsync(roleId);    
@@ -177,9 +180,9 @@ namespace DevJobsWeb.Controllers
                 {
                     result = await userManager.AddToRoleAsync(user, role.Name);
                 }
-                else if (!model[i].IsSelected && await userManager.IsInRoleAsync(user, role.Name))
+                else if (!model[i].IsSelected && await userManager.IsInRoleAsync(user, role.Name))    ///breaks here
                 {
-                    result = await userManager.RemoveFromRoleAsync(user, role.Name);
+                    result = await userManager.RemoveFromRoleAsync( user, role.Name);
                 }
                 else
                 {
@@ -199,6 +202,12 @@ namespace DevJobsWeb.Controllers
             }
 
             return RedirectToAction("EditRole", new { Id = roleId });
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 
