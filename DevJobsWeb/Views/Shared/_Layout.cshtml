@@ -39,16 +39,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Job" asp-action="Index">Jobs</a>
                         </li>
+                       
                          @if(SignInManager.IsSignedIn(User) && User.IsInRole("NormalUse"))
                          {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navDropDownMenueLink"
-                                aria-haspopup="false" aria-expand >Manage</a>
-                                <div class="dropdown-menu" aria-labelledby="navDropDownMenueLink">
-                                    <a asp-action="ListUsers" asp-controller="Administration" class="dropdown-item">Users </a>
-                                    <a asp-action="Index" asp-controller="Administration" class="dropdown-item">Roles </a>
-                                    <a asp-action="Create" asp-controller="Job" class="dropdown-item">Create Jobs </a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Administration" asp-action="Index">Manage</a>
+                                
                             </li>
                          }         
                     </ul>                          

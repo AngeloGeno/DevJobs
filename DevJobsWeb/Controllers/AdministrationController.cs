@@ -23,8 +23,9 @@ namespace DevJobsWeb.Controllers
         }
 
         //[Route("Administration/Create/{Id}")]
+                              
         public IActionResult Index()
-        {
+          {
             var role = this.roleManager.Roles.ToList();
             return View(role);
         }
@@ -106,7 +107,7 @@ namespace DevJobsWeb.Controllers
                 return View("NotFound");
             }                  
             else
-            {
+            {                                                  
                 role.Name = model.RoleName;
 
                 // Update the Role using UpdateAsync
@@ -202,6 +203,34 @@ namespace DevJobsWeb.Controllers
             }
 
             return RedirectToAction("EditRole", new { Id = roleId });
+        }
+
+        [HttpPost]
+        [Route("Administration/DeleteRole/{Id}")]
+        public async Task<IActionResult> DeleteRole(string id)            //when deletetig a rolethe break poin it supposed to be hit
+        {
+            var role = await roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id ={id} cannnot be found";
+                return View("NotFound");
+            }                                         
+            else 
+            {
+                var result = await roleManager.DeleteAsync(role);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View("Index");
+            }
+
+            return View();
         }
 
         [HttpGet]
